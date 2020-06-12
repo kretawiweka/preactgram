@@ -30,9 +30,10 @@
     "sirv-cli": "^0.4.5"
   },
   "dependencies": {
+    "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
     "preact": "^10.3.2",
-    "preact-render-to-string": "^5.1.4",
+    "preact-render-to-string": "^5.1.9",
     "preact-router": "^3.2.1"
   },
   "jest": {
