@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import { Router } from 'preact-router'
+import 'assets/styles/application.scss'
 
 // Code-splitting is automated for routes
 import Home from 'views/home'
