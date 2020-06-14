@@ -4,9 +4,10 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/styles'
 import App from 'components/App'
 import theme from './theme'
+import 'assets/styles/application.scss'
 
 export default () => (
-  <div id="app">
+  <div>
     <ThemeProvider theme={theme}>
       <link
         rel="stylesheet"

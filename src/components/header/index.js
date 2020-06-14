@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography'
 
 const Header = () => {
   return (
-    <AppBar color="transparent">
+    <AppBar color="primary" position="static">
       <Toolbar>
-        <Typography variant="h6">dada</Typography>
+        <Typography variant="h6">Preactgram</Typography>
       </Toolbar>
     </AppBar>
   )

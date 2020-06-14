@@ -27,6 +27,8 @@
     "preact-cli": "^3.0.0-rc.6",
     "preact-compat": "^3.19.0",
     "preact-render-spy": "^1.2.1",
+    "sass": "^1.26.8",
+    "sass-loader": "^8.0.2",
     "sirv-cli": "^0.4.5"
   },
   "dependencies": {
