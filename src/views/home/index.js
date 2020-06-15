@@ -1,10 +1,12 @@
 import { h, Fragment } from 'preact'
-import { useState } from 'preact/hooks'
+import { useState, useEffect } from 'preact/hooks'
 
 // import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
+
+import http from 'libraries/http'
 
 import Header from 'components/header'
 import Container from 'components/container'
@@ -14,10 +16,22 @@ import Form from './form'
 
 const Home = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [data, setData] = useState(null)
 
   const handleModalChange = () => {
     setIsOpenModal(!isOpenModal)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const postData = await http({
+        path: '/post',
+      })
+      console.log('test')
+      setData(postData)
+    }
+    fetchData()
+  }, [])
 
   return (
     <Fragment>
