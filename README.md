@@ -1,4 +1,4 @@
-# preact-go
+# preactgram
 
 ## CLI Commands
 
