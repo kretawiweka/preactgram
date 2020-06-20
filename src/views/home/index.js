@@ -15,47 +15,49 @@ import Post from './post'
 import Form from './form'
 
 const Home = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false)
-  const [data, setData] = useState(null)
+	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [data, setData] = useState(null)
 
-  const handleModalChange = () => {
-    setIsOpenModal(!isOpenModal)
-  }
+	const handleModalChange = () => {
+		setIsOpenModal(!isOpenModal)
+	}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const postData = await http({
-        path: '/post',
-      })
-      console.log('test')
-      setData(postData)
-    }
-    fetchData()
-  }, [])
+	useEffect(() => {
+		const fetchData = async () => {
+			const response = await http({
+				path: '/posts',
+			})
+			setData(response.data)
+		}
+		fetchData()
+	}, [])
 
-  return (
-    <Fragment>
-      <Header />
-      <Container>
-        <Form isOpen={isOpenModal} handleModalChange={handleModalChange} />
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Post />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Post />
-          </Grid>
-        </Grid>
-      </Container>
-      <Fab
-        className="float-btn"
-        color="primary"
-        aria-label="add"
-        onClick={handleModalChange}
-      >
-        <AddIcon />
-      </Fab>
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			<Header />
+			<Container>
+				<Form
+					isOpen={isOpenModal}
+					handleModalChange={handleModalChange}
+				/>
+				<Grid container spacing={1}>
+					{data !== null &&
+						data.map((item) => (
+							<Grid key={item.id} item xs={12} sm={6} md={4}>
+								<Post data={item} />
+							</Grid>
+						))}
+				</Grid>
+			</Container>
+			<Fab
+				className="float-btn"
+				color="primary"
+				aria-label="add"
+				onClick={handleModalChange}
+			>
+				<AddIcon />
+			</Fab>
+		</Fragment>
+	)
 }
 export default Home
