@@ -1,9 +1,25 @@
-import { VIEW_POST_LIST } from './action'
+import { LOAD, LIST } from './action'
 
-export const postReducer = (state, action) => {
-	switch (action) {
-		case VIEW_POST_LIST:
-			return state
+export const reducer = (state, action) => {
+	switch (action.type) {
+		case LOAD:
+			return {
+				...state,
+				meta: {
+					load: true,
+				},
+			}
+		case LIST:
+			return {
+				...state,
+				meta: {
+					load: false,
+				},
+				response: {
+					...state.response,
+					data: action.data,
+				},
+			}
 		default: {
 			return state
 		}

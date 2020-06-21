@@ -1,34 +1,51 @@
-import { useReducer } from 'preact/compat'
+import { h } from 'preact'
+import { createContext, useReducer } from 'preact/compat'
 import { LOAD, LIST } from './action'
-import { reducer } from 'stacks/services/user/reducer'
+import { reducer } from 'stacks/services/post/reducer'
 import http from 'libraries/http'
 
-let initialState = {
-	data: [],
+const initialState = {
+	meta: {
+		load: false,
+	},
+	response: {
+		data: [],
+	},
 }
 
-const [state, dispatch] = useReducer(reducer, initialState)
+export const Context = createContext(initialState)
 
-export const list = (options = {}) => {
-	let { node } = options
+export const Provider = ({ children }) => {
+	const { Provider } = Context
+	const [state, dispatch] = useReducer(reducer, initialState)
 
-	dispatch({ type: LOAD })
-
-	switch (node) {
-		case true: {
-			return http({
-				path: '/posts',
+	const list = () => {
+		dispatch({ type: LOAD })
+		http({
+			path: '/posts',
+		}).then((response) => {
+			dispatch({
+				type: LIST,
+				data: response.data,
 			})
-		}
-
-		default:
-			http({
-				path: '/posts',
-			}).then((response) => {
-				dispatch({
-					type: LIST,
-					list: response.data,
-				})
-			})
+		})
 	}
+
+	return (
+		<Provider
+			value={{
+				initialState,
+				state,
+				dispatch,
+				list,
+			}}
+		>
+			{children}
+		</Provider>
+	)
+}
+
+export const Consumer = ({ children }) => {
+	let { Consumer } = Context
+	return <Consumer>{children}</Consumer>
 }

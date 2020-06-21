@@ -1,11 +1,11 @@
-// /**  @jsx h **/
+/**  @jsx h **/
 
-// import { h } from 'preact'
+import { h } from 'preact'
 
-// import { Provider } from 'stacks/services/post/context'
+import { Provider } from 'stacks/services/post/context'
 
-// const Stacks = ({ children }) => {
-// 	return <Provider>{children}</Provider>
-// }
+const Stacks = ({ children }) => {
+	return <Provider>{children}</Provider>
+}
 
-// export default Stacks
+export default Stacks
