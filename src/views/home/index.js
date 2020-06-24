@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 
-import { Context, Consumer } from 'stacks/services/post/context'
+import { Context, Consumer } from 'stacks/context'
 
 import Header from 'components/header'
 import Container from 'components/container'
