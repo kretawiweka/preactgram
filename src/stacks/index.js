@@ -2,7 +2,7 @@
 
 import { h } from 'preact'
 
-import { Provider } from 'stacks/services/context'
+import { Provider } from 'stacks/context'
 
 const Stacks = ({ children }) => {
 	return <Provider>{children}</Provider>

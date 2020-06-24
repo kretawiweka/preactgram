@@ -1,22 +1,27 @@
 import { h } from 'preact'
 import { createContext, useReducer } from 'preact/compat'
 
-import { initialState as postState, postHelper as post } from './post'
-import { reducer } from './post/reducer'
+// import combineReducers from 'libraries/combineReducers'
+
+import { initialState as postState, postHelper as post } from './services/post'
+import { reducer as postReducer } from './services/post/reducer'
 
 export const initialState = [postState]
 export const Context = createContext(...initialState)
+// const rootReducer = combineReducers({
+// 	postReducer
+// })
 
 export const Provider = ({ children }) => {
 	const { Provider } = Context
-	const [state, dispatch] = useReducer(reducer, ...initialState)
+	const [state, dispatch] = useReducer(postReducer, ...initialState)
 	return (
 		<Provider
 			value={{
 				...initialState,
 				state,
 				dispatch,
-				...post,
+				post,
 			}}
 		>
 			{children}

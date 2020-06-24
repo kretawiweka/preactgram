@@ -13,7 +13,7 @@ export const initialState = {
 }
 
 export const postHelper = {
-	list: () => {
+	list: (dispatch) => {
 		dispatch({ type: LOAD })
 		http({
 			path: '/posts',

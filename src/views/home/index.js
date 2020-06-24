@@ -17,13 +17,14 @@ import Form from './form'
 const Home = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const context = useContext(Context)
+	const { dispatch } = context
 
 	const handleModalChange = () => {
 		setIsOpenModal(!isOpenModal)
 	}
 
 	useEffect(() => {
-		context.list()
+		context.post.list(dispatch)
 	}, [])
 
 	return (
