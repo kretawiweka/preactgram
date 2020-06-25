@@ -1,15 +1,15 @@
-import { LOAD_POST, LIST_POST } from './action'
+import { LOAD_COMMENT, LIST_COMMENT } from './action'
 
 export const reducer = (state, action) => {
 	switch (action.type) {
-		case LOAD_POST:
+		case LOAD_COMMENT:
 			return {
 				...state,
 				meta: {
 					load: true,
 				},
 			}
-		case LIST_POST:
+		case LIST_COMMENT:
 			return {
 				...state,
 				meta: {

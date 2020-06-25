@@ -5,6 +5,7 @@ import 'assets/styles/application.scss'
 
 // Code-splitting is automated for routes
 import Home from 'views/home'
+import Comment from 'views/comment'
 
 const App = () => {
 	return (
@@ -12,6 +13,7 @@ const App = () => {
 			<Stacks>
 				<Router>
 					<Home path="/" />
+					<Comment path="/post/:id:/comment" />
 				</Router>
 			</Stacks>
 		</div>

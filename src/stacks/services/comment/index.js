@@ -1,7 +1,7 @@
 /**  @jsx h **/
 
 import http from 'libraries/http'
-import { LOAD_POST, LIST_POST } from './action'
+import { LOAD_COMMENT, LIST_COMMENT } from './action'
 
 export const initialState = {
 	meta: {
@@ -12,14 +12,14 @@ export const initialState = {
 	},
 }
 
-export const postHelper = {
+export const commentHelper = {
 	list: (dispatch) => {
-		dispatch({ type: LOAD_POST })
+		dispatch({ type: LOAD_COMMENT })
 		http({
-			path: '/posts',
+			path: '/posts/1/comments',
 		}).then((response) => {
 			dispatch({
-				type: LIST_POST,
+				type: LIST_COMMENT,
 				data: response.data,
 			})
 		})

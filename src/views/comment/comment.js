@@ -6,14 +6,21 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
-const Post = ({ data }) => {
+const Comment = ({ data }) => {
 	return (
 		<Card variant="outlined">
 			<CardContent>
 				<Typography variant="h5" component="h2" gutterBottom={true}>
-					{data.title}
+					{data.name}
 				</Typography>
-				<Typography variant="body1" component="p" gutterBottom={true}>
+				<Typography
+					variant="caption"
+					component="h6"
+					gutterBottom={true}
+				>
+					{data.email}
+				</Typography>
+				<Typography variant="body1" component="p">
 					{data.body}
 				</Typography>
 			</CardContent>
@@ -25,4 +32,4 @@ const Post = ({ data }) => {
 	)
 }
 
-export default Post
+export default Comment
