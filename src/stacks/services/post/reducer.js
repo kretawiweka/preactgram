@@ -4,20 +4,25 @@ export const reducer = (state, action) => {
 	switch (action.type) {
 		case LOAD_POST:
 			return {
-				...state,
-				meta: {
-					load: true,
+				...state.post,
+				post: {
+					meta: {
+						load: true,
+					},
 				},
 			}
 		case LIST_POST:
+			console.log(action.data)
 			return {
-				...state,
-				meta: {
-					load: false,
-				},
-				response: {
-					...state.response,
-					data: action.data,
+				...state.post,
+				post: {
+					meta: {
+						load: false,
+					},
+					response: {
+						...state.response,
+						data: action.data,
+					},
 				},
 			}
 		default: {

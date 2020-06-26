@@ -5,21 +5,45 @@ export const reducer = (state, action) => {
 		case LOAD_COMMENT:
 			return {
 				...state,
-				meta: {
-					load: true,
+				comment: {
+					meta: {
+						load: true,
+					},
 				},
 			}
 		case LIST_COMMENT:
+			console.log('action data', action.data)
 			return {
 				...state,
-				meta: {
-					load: false,
-				},
-				response: {
-					...state.response,
-					data: action.data,
+				comment: {
+					meta: {
+						load: true,
+					},
 				},
 			}
+		// return Object.assign({}, state, {
+		// 	comment: {
+		// 		meta: {
+		// 			load: false,
+		// 		},
+		// 		response: {
+		// 			...state.comment.response,
+		// 			data: action.data,
+		// 		},
+		// 	},
+		// })
+		// return {
+		// 	...state,
+		// 	comment: {
+		// 		meta: {
+		// 			load: false,
+		// 		},
+		// 		response: {
+		// 			...state.comment.response,
+		// 			data: action.data,
+		// 		},
+		// 	},
+		// }
 		default: {
 			return state
 		}

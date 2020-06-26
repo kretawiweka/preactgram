@@ -42,8 +42,8 @@ const Home = () => {
 							handleModalChange={handleModalChange}
 						/>
 						<Grid container spacing={1}>
-							{!state.meta.load &&
-								state.response.data.map((item) => (
+							{!state.post.meta.load &&
+								state.post.response.data.map((item) => (
 									<Grid
 										key={item.id}
 										item

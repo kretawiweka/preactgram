@@ -21,30 +21,34 @@ const Commnet = () => {
 
 	return (
 		<Consumer>
-			{({ state }) => (
-				<Fragment>
-					<Header />
-					<Container>
-						<Typography variant="h4" component="h4">
-							Comment
-						</Typography>
-						<Grid container spacing={1}>
-							{!state.meta.load &&
-								state.response.data.map((item) => (
-									<Grid
-										key={item.id}
-										item
-										xs={12}
-										sm={6}
-										md={4}
-									>
-										<Comment data={item} />
-									</Grid>
-								))}
-						</Grid>
-					</Container>
-				</Fragment>
-			)}
+			{({ state }) => {
+				console.log('state comment', state.comment)
+				return (
+					<Fragment>
+						<Header />
+						<Container>
+							<Typography variant="h4" component="h4">
+								Comment
+							</Typography>
+							<Grid container spacing={1}>
+								{state.comment !== undefined &&
+									!state.comment.meta.load &&
+									state.comment.response.data.map((item) => (
+										<Grid
+											key={item.id}
+											item
+											xs={12}
+											sm={6}
+											md={4}
+										>
+											<Comment data={item} />
+										</Grid>
+									))}
+							</Grid>
+						</Container>
+					</Fragment>
+				)
+			}}
 		</Consumer>
 	)
 }
