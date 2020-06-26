@@ -22,7 +22,6 @@ const Commnet = () => {
 	return (
 		<Consumer>
 			{({ state }) => {
-				console.log('state comment', state.comment)
 				return (
 					<Fragment>
 						<Header />
@@ -31,8 +30,7 @@ const Commnet = () => {
 								Comment
 							</Typography>
 							<Grid container spacing={1}>
-								{state.comment !== undefined &&
-									!state.comment.meta.load &&
+								{!state.comment.meta.load &&
 									state.comment.response.data.map((item) => (
 										<Grid
 											key={item.id}

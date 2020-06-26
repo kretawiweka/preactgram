@@ -14,11 +14,12 @@ import { reducer as commentReducer } from './services/comment/reducer'
 
 export const initialState = {
 	comment: commentState,
+	post: postState,
 }
 export const Context = createContext()
 const rootReducer = combineReducers({
-	postReducer,
-	commentReducer,
+	post: postReducer,
+	comment: commentReducer,
 })
 
 export const Provider = ({ children }) => {
@@ -31,6 +32,7 @@ export const Provider = ({ children }) => {
 				state,
 				dispatch,
 				comment,
+				post,
 			}}
 		>
 			{children}

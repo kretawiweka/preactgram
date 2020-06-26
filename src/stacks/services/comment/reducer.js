@@ -12,38 +12,17 @@ export const reducer = (state, action) => {
 				},
 			}
 		case LIST_COMMENT:
-			console.log('action data', action.data)
 			return {
 				...state,
-				comment: {
-					meta: {
-						load: true,
-					},
+				meta: {
+					load: false,
+				},
+				response: {
+					...state.comment.response,
+					data: action.data,
 				},
 			}
-		// return Object.assign({}, state, {
-		// 	comment: {
-		// 		meta: {
-		// 			load: false,
-		// 		},
-		// 		response: {
-		// 			...state.comment.response,
-		// 			data: action.data,
-		// 		},
-		// 	},
-		// })
-		// return {
-		// 	...state,
-		// 	comment: {
-		// 		meta: {
-		// 			load: false,
-		// 		},
-		// 		response: {
-		// 			...state.comment.response,
-		// 			data: action.data,
-		// 		},
-		// 	},
-		// }
+
 		default: {
 			return state
 		}
