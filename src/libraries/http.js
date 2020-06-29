@@ -8,9 +8,13 @@ const http = ({ method = 'GET', path, data }) => {
 		data: {
 			...data,
 		},
-	}).then((response) => {
-		return response
 	})
+		.then((response) => {
+			return response
+		})
+		.catch((error) => {
+			throw error
+		})
 }
 
 export default http

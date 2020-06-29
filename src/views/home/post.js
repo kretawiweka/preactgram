@@ -6,15 +6,15 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
-const Post = ({ data }) => {
+const Post = () => {
 	return (
 		<Card variant="outlined">
 			<CardContent>
 				<Typography variant="h5" component="h2" gutterBottom={true}>
-					{data.title}
+					title
 				</Typography>
 				<Typography variant="body1" component="p" gutterBottom={true}>
-					{data.body}
+					body
 				</Typography>
 			</CardContent>
 			<CardActions>
