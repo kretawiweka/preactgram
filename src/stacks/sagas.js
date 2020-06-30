@@ -1,8 +1,9 @@
-import { takeLatest } from 'redux-saga/effects'
+import { all, takeLatest } from 'redux-saga/effects'
 
-import { LIST_POST } from './services/post/action'
 import { getPostData } from './services/post/sagas'
 
+import { LOAD_POST } from './services/post/action'
+
 export default function* rootSaga() {
-	yield takeLatest(LIST_POST, getPostData)
+	yield all([takeLatest(LOAD_POST, getPostData)])
 }

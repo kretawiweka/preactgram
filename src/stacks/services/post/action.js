@@ -7,10 +7,9 @@ export const loadPost = () => {
 	}
 }
 
-export const listPost = (state) => {
-	loadPost()
+export const listPost = (data) => {
 	return {
 		type: LIST_POST,
-		state,
+		data,
 	}
 }

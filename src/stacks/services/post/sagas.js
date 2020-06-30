@@ -8,7 +8,6 @@ export function* getPostData() {
 		const response = yield http({
 			path: '/posts',
 		})
-		console.log(response)
 		yield put(listPost(response.data))
 	} catch (error) {
 		yield put({ type: 'USER_FETCH_FAILED' })

@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 // import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -10,21 +10,23 @@ import Typography from '@material-ui/core/Typography'
 
 import Header from 'components/header'
 import Container from 'components/container'
-import { listPost } from 'stacks/services/post/action'
+import { loadPost } from 'stacks/services/post/action'
 
 import Post from './post'
 import Form from './form'
 
-const Home = (props) => {
+const Home = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
+	const dispatch = useDispatch()
+	const postData = useSelector((state) => state.post)
 
 	const handleModalChange = () => {
 		setIsOpenModal(!isOpenModal)
 	}
 
 	useEffect(() => {
-		// props.listPost()
-	}, [])
+		dispatch(loadPost())
+	}, [dispatch])
 
 	return (
 		<Fragment>
@@ -55,12 +57,4 @@ const Home = (props) => {
 	)
 }
 
-const mapStateToProps = (state) => ({
-	postData: state.post.response.data,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-	listPost: () => dispatch(listPost()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home
