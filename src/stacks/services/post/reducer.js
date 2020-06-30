@@ -1,8 +1,9 @@
-import { LOAD_POST, LIST_POST } from './action'
+import { LOAD_POST, SUCCESS_LOAD_POST, FAILED_LOAD_POST } from './action'
 
 const initialState = {
 	meta: {
-		load: false,
+		isLoading: false,
+		isFailedLoad: false,
 	},
 	response: {
 		data: [],
@@ -10,20 +11,32 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-	console.log(action.type, action.data)
 	switch (action.type) {
 		case LOAD_POST:
 			return Object.assign({}, state, {
 				...state.post,
 				meta: {
-					load: true,
+					isLoading: true,
+					isFailedLoad: false,
 				},
 			})
-		case LIST_POST:
+		case SUCCESS_LOAD_POST:
 			return Object.assign({}, state, {
 				...state.post,
+				meta: {
+					isLoading: false,
+					isFailedLoad: false,
+				},
 				response: {
-					data: [...state.response.data, action.data],
+					data: [...state.response.data, ...action.data],
+				},
+			})
+		case FAILED_LOAD_POST:
+			return Object.assign({}, state, {
+				...state.post,
+				meta: {
+					isLoading: false,
+					isFailedLoad: true,
 				},
 			})
 		default:

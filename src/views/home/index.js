@@ -17,8 +17,9 @@ import Form from './form'
 
 const Home = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [postData, setPostData] = useState(null)
 	const dispatch = useDispatch()
-	const postData = useSelector((state) => state.post)
+	const postDataState = useSelector((state) => state.post)
 
 	const handleModalChange = () => {
 		setIsOpenModal(!isOpenModal)
@@ -27,6 +28,11 @@ const Home = () => {
 	useEffect(() => {
 		dispatch(loadPost())
 	}, [dispatch])
+
+	useEffect(() => {
+		postDataState.response.data !== null &&
+			setPostData(postDataState.response.data)
+	}, [postDataState])
 
 	return (
 		<Fragment>
@@ -40,9 +46,21 @@ const Home = () => {
 					handleModalChange={handleModalChange}
 				/>
 				<Grid container spacing={1}>
-					<Grid item xs={12} sm={6} md={4}>
-						<Post />
-					</Grid>
+					{!postDataState.meta.isLoading && postData !== null ? (
+						postData.map((item, index) => (
+							<Grid key={index} item xs={12} sm={6} md={4}>
+								<Post data={item} />
+							</Grid>
+						))
+					) : (
+						<Typography
+							variant="body1"
+							component="p"
+							gutterBottom={true}
+						>
+							Loading ...
+						</Typography>
+					)}
 				</Grid>
 			</Container>
 			<Fab

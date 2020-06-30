@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects'
 
-import { listPost } from './action'
+import { successLoadPost, failedLoadPost } from './action'
 import http from 'libraries/http'
 
 export function* getPostData() {
@@ -8,8 +8,8 @@ export function* getPostData() {
 		const response = yield http({
 			path: '/posts',
 		})
-		yield put(listPost(response.data))
+		yield put(successLoadPost(response.data))
 	} catch (error) {
-		yield put({ type: 'USER_FETCH_FAILED' })
+		yield put(failedLoadPost())
 	}
 }
