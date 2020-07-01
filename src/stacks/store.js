@@ -3,10 +3,12 @@ import { compose, applyMiddleware, combineReducers, createStore } from 'redux'
 
 import rootSaga from './sagas'
 import postReducer from './services/post/reducer'
+import commentReducer from './services/comment/reducer'
 
 const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers({
 	post: postReducer,
+	comment: commentReducer,
 })
 const store = createStore(
 	rootReducer,

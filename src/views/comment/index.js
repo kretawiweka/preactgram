@@ -1,14 +1,34 @@
 import { h, Fragment } from 'preact'
+import { useState, useEffect } from 'preact/hooks'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
 import Header from 'components/header'
 import Container from 'components/container'
+import { loadComment } from 'stacks/services/comment/action'
 
 import Comment from './comment'
 
-const Commnet = () => {
+const CommentContainer = () => {
+	const dispatch = useDispatch()
+	const [commentData, setCommentData] = useState(null)
+	const commentDataState = useSelector((state) => state.comment)
+
+	useEffect(() => {
+		console.log('test')
+	}, [])
+
+	useEffect(() => {
+		dispatch(loadComment())
+	}, [dispatch])
+
+	useEffect(() => {
+		commentDataState.response.data !== null &&
+			setCommentData(commentDataState.response.data)
+	}, [commentDataState])
+
 	return (
 		<Fragment>
 			<Header />
@@ -17,12 +37,25 @@ const Commnet = () => {
 					Comment
 				</Typography>
 				<Grid container spacing={1}>
-					<Grid item xs={12} sm={6} md={4}>
-						<Comment />
-					</Grid>
+					{!commentDataState.meta.isLoading &&
+					commentData !== null ? (
+						commentData.map((item, index) => (
+							<Grid key={index} item xs={12} sm={6} md={4}>
+								<Comment data={item} />
+							</Grid>
+						))
+					) : (
+						<Typography
+							variant="body1"
+							component="p"
+							gutterBottom={true}
+						>
+							Loading ...
+						</Typography>
+					)}
 				</Grid>
 			</Container>
 		</Fragment>
 	)
 }
-export default Commnet
+export default CommentContainer
